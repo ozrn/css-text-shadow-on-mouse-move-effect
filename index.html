@@ -42,7 +42,11 @@
     function makeShadow(e){
       const { offsetWidth: width, offsetHeight: height } = hero; //ES6 Deststructuring
       let { offsetX: x , offsetY: y } = e ; //get the info about where the cursor was
-      console.log(x, y);
+
+      if( this !== e.target ) {  // this is going to be the thing that we listened on; e.target is going to be the thing that it actually triggered on.
+        x = x + e.target.offsetLeft;
+        y = y + e.target.offsetTop;
+      }
     }
 
     hero.addEventListener("mousemove", makeShadow);
